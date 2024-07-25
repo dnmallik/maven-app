@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Aseemakram19/maven-app.git'
+                git branch: 'main', url: 'https://github.com/dnmallik/maven-app.git'
             }
         }
         
@@ -20,7 +20,7 @@ pipeline {
         
         stage('Create Docker Image') {
             steps {
-                sh 'docker build -t aseem1 .'
+                sh 'docker build -t mallix1 .'
             }
         }
         
@@ -30,8 +30,8 @@ pipeline {
                     def portStatus = sh(script: 'netstat -tuln | grep ":9000"', returnStatus: true)
                     if (portStatus == 0) {
                         echo "Port 9000 is in use, stopping and removing the existing container"
-                        sh 'docker stop aseem_container'
-                        sh 'docker rm aseem_container'
+                        sh 'docker stop mallik1'
+                        sh 'docker rm mallik1'
                     } else {
                         echo "Port 9000 is available"
                     }
@@ -41,7 +41,7 @@ pipeline {
         
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 9000:8090 --name aseem_container -t aseem1'
+                sh 'docker run -d -p 9000:8090 --name mallik1 -t aseem1'
             }
         }
     }
