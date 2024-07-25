@@ -1,10 +1,14 @@
 pipeline {
     agent any
     
+    environment {
+        PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" // Add Docker binary location if different
+    }
+
     tools {
         maven "Maven3"
     }
-       
+
     stages {
         stage('Git Checkout') {
             steps {
@@ -20,7 +24,9 @@ pipeline {
         
         stage('Create Docker Image') {
             steps {
-                sh 'docker build -t mallix1 .'
+                script {
+                    sh 'docker build -t mallix1:latest .'
+                }
             }
         }
         
@@ -30,8 +36,8 @@ pipeline {
                     def portStatus = sh(script: 'netstat -tuln | grep ":9000"', returnStatus: true)
                     if (portStatus == 0) {
                         echo "Port 9000 is in use, stopping and removing the existing container"
-                        sh 'docker stop mallik1'
-                        sh 'docker rm mallik1'
+                        sh 'docker stop mallix1'
+                        sh 'docker rm mallix1'
                     } else {
                         echo "Port 9000 is available"
                     }
@@ -41,8 +47,11 @@ pipeline {
         
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 9000:8090 --name mallik1 -t aseem1'
+                script {
+                    sh 'docker run -d -p 9000:8090 --name javapp mallix1:latest'
+                }
             }
         }
-    }
+    } 
 }
+
