@@ -48,7 +48,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 9000:8090 --name javapp mallix1:latest'
+                    sh 'docker run -d -p 9000:8090 --name javapp mallix1'
                 }
             }
         }

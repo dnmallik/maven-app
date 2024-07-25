@@ -5,7 +5,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /Users/mallik/.jenkins/workspace/java_pipeline/target/
 
 # Copy the application JAR file to the container
-COPY target/maven-cloudaseem-app.war /Users/mallik/.jenkins/workspace/java_pipeline/target/maven-cloudaseem-app.war
+COPY target/mallix.war /Users/mallik/.jenkins/workspace/java_pipeline/target/mallix.war
 
 # Make port 8080 available to the world outside this container
 EXPOSE 8090
