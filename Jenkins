@@ -1,11 +1,8 @@
 pipeline {
     agent any
-    
+   
     environment {
         PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" // Add Docker binary location if different
-    }
-    
-    environment {
         DOCKER_REGISTRY = 'dnmallik/dedication'
         DOCKER_CREDENTIALS_ID = 'docker-credentials'
     }
