@@ -11,4 +11,4 @@ COPY target/maven-cloudaseem-app.war /Users/mallik/.jenkins/workspace/java_pipel
 EXPOSE 8090
 
 # Run the JAR file
-ENTRYPOINT ["java", "-jar", "/mallix.war"]
+ENTRYPOINT ["java", "-jar", "/maven-cloudaseem-app.war"]
